@@ -46,7 +46,7 @@ def create_sequences(data, seq_length):
     return np.array(xs), np.array(ys)
 
 # Define sequence length (look-back window)
-sequence_length = 10 # This means we use 10 past values to predict the next
+sequence_length = 10
 
 # Create sequences for training data
 X_train_sequences, y_train_labels = create_sequences(X_train_scaled, sequence_length)
@@ -64,7 +64,7 @@ class RNN(nn.Module):
     # x goes through the RNN
         out, _ = self.rnn(x)
 
-        # We only take the last time step's output to predict the future
+        # Only take the last time step's output to predict the future
         out = out[:, -1, :]
 
         # Pass that last step through the Linear layer
