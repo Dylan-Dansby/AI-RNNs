@@ -46,8 +46,7 @@ class LSTMClassifier(nn.Module):
 
         
         # 4. Final Classification
-        # We use the VERY LAST hidden state (h_t) because it contains
-        # the summary of the whole sentence.
+        # Use the very last hidden state (h_t) because it contains the summary of the whole sentence.
         prediction = self.classifier(h_t)
         prediction = torch.sigmoid(prediction)
         prediction = prediction.squeeze(1)
@@ -110,10 +109,10 @@ for epoch in range(10):
     validation_loss+=loss.item()
     Predictions = torch.round(Predictions)
     
-
+     #Count Correct Predictions
     Accuracy += (Predictions == targets).sum().item()
 
-    
+    #Calculate Accuracy
   Accuracy = Accuracy/len(x_test)
   if(Accuracy > Best_Accuracy):
     Best_Accuracy = Accuracy
